@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Zamawiam:</h1>
+  <li>cena za 200ml:{{ spirit.price200 }}zł</li>
+  <li>cena za 100ml: {{ spirit.price100 }}zł</li>
+  <li>cena za 50ml: {{ spirit.price50 }}zł</li>
+  <form method="post">
+
+    {% csrf_token %}
+    <p>{{ form.as_p }}</p>
+    <button type="submit">Wybierz</button>
+
+  </form>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  {% for order in orders %}
+
+    <li>Nazwa produktu:{{ order.spirit }}</li>
+    <li>Zamówiona ilość:{{ order.get_quantity_display }}</li>
+    <li>Zamówione dla:{{ order.user }}</li>
+    <br>
+
+  {% endfor %}
+
+
+{% endblock %}

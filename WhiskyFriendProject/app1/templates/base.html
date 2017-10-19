@@ -1,0 +1,30 @@
+</html>
+<html>
+    <head><meta charset="utf-8">
+    {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"
+    </head>
+    <body>
+        <h1>Whisky-Friends.</h1>
+        <ul>
+            {% block content %} {% endblock %}
+        </ul>
+            <footer>
+
+          {% if request.user.is_authenticated %}
+
+            <p><a href="{% url "logout" %}">Logout</a></p>
+            <p> Zalogowany jako: {{ request.user.username }}</p>
+
+          {% else %}
+            <p> Musisz być zalogowany aby korzystać z funkcji strony</p>
+            <p><a href="{% url "login" %}">Login</a></p>
+            <p><a href="{% url "signup" %}">Rejestracja</a></p>
+
+          {% endif %}
+              <p> Data: {{ date }} </p>
+              <p>Wersja: {{ version }} </p>
+              <p> <a href ="{% url "home" %}">Home</a></p>
+        </footer>
+    </body>
+</html>

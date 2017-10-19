@@ -1,0 +1,9 @@
+body {
+    font-family: 'Open Sans';
+  	font-style: italic;
+    text-align: center;
+  	color: white;
+    background-color: lightblue;
+    background-image: url("../images/background.jpg");
+    background-size: 100%, 100%;
+}

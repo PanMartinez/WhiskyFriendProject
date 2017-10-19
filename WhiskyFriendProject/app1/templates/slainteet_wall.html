@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="GET" action='/say_slainte'>
+    <input type="submit" value="Say Slainte!">
+</form><br><br>
+    {% for slainteet in object_list %}
+        <li>
+          {{ slainteet.user }} {{ slainteet.creation_date }}<br>
+            {{ slainteet.content }}<br>
+        </li><br>
+
+    {% endfor %}
+
+{% endblock %}
