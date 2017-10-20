@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+  <div> Strona stworzona przez pasjonatów Whisky dla pasjonatów whisky.<br>
+  Jest to miejsce, w którym możesz zamówić sample, wymarzonych whisky, jak rozprawiać o nich z innymi pasjonatami.<br>
+  sprawdź sam! </div>
+
+    <form action={% url "home" %}>
+    <input type="submit" value="Menu główne"/>
+  </form>
+
+{% endblock %}

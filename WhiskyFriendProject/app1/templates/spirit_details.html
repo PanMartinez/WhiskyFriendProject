@@ -2,19 +2,19 @@
 
 {% block content %}
   <img src=" {{ spirit.picture.url }}" width="500" height="500">
-  <p class="sidebar">
-  <h2>Nazwa: {{ spirit.name }}</h2>
-  <li>Pojemność butelki: {{ spirit.get_capacity_display }}</li>
-  <li>Kraj pochodzenia: {{ spirit.country }}</li>
-  <li>Cena za butelkę: {{ spirit.price }}zł</li>
-  <li>{{ spirit.description }}</li>
-  <li>Pozostało do rozlania:{{ spirit.reserved }}ml</li>
+  <p>
+  <h2>Nazwa: {{ spirit.name }}</h2><br>
+  Pojemność butelki: {{ spirit.get_capacity_display }}<br>
+  Kraj pochodzenia: {{ spirit.country }}<br>
+  Cena za butelkę: {{ spirit.price }}zł<br>
+  {{ spirit.description }}<br>
+  Pozostało do rozlania:{{ spirit.reserved }}ml<br>
   </p>
   <br>
   <br>
-  <li>cena za 200ml:{{ spirit.price200 }}zł</li>
-  <li>cena za 100ml: {{ spirit.price100 }}zł</li>
-  <li>cena za 50ml: {{ spirit.price50 }}zł</li>
+  cena za 200ml:{{ spirit.price200 }}zł<br>
+  cena za 100ml: {{ spirit.price100 }}zł<br>
+  cena za 50ml: {{ spirit.price50 }}zł<br>
   <br>
   <p>
   <form action={% url "new_order" spirit.id %}>
@@ -22,14 +22,14 @@
   </form>
   </p>
   <form action={% url "all_spirits" %}>
-    <input type="submit" value="Inne zrzutki "/>
+    <button type="submit">Inne zrzutki</button>
   </form>
 
-  <p> Aktualne zamówienia:</p>
+
+  <p> Aktualne zamówienia:</p><br>
   {% for order in orders %}
-    <li> {{ order.user }}</li>
-    <li> {{ order.get_quantity_display }}ml</li>
-    <br>
+    {{ order.user }}<br>
+    {{ order.get_quantity_display }}ml<br>
   {% endfor %}
 
 {% endblock %}

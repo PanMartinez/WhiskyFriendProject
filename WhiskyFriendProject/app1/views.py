@@ -29,6 +29,10 @@ class StartView(View):
     def get(self, request):
         return render(request, "index.html")
 
+class InfoView(View):
+    def get(self, request):
+        return TemplateResponse(request, 'info.html')
+
 
 class AllSpiritsView(View):
     def get(self, request):
@@ -69,7 +73,7 @@ class NewOrderView(LoginRequiredMixin, View):
 
 class AllOrdersView(View):
     def get(self, request):
-        return TemplateResponse(request, 'all_orders.html')
+        return TemplateResponse(request, 'all_spirits.html')
 
 
 

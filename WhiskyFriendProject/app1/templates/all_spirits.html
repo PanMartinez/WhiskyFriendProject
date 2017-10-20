@@ -2,13 +2,18 @@
 
 {% block content %}
   {% for spirit in spirits %}
-
-    <li>Nazwa:{{ spirit.name }}</li>
-    <li>Pojemność butelki:{{ spirit.get_capacity_display }} ml</li>
-    <li>Pozostało do rozlania: {{ spirit.reserved }} ml</li>
-    <img src=" {{ spirit.picture.url }}" width="100" height="100">
-    <a href="{% url "spirit_details" spirit.id %}"> szczegóły</a>
-    <br>
+    <div>
+      Nazwa:{{ spirit.name }}<br>
+      Kraj: {{ spirit.country }}<br>
+      Pojemność butelki:{{ spirit.get_capacity_display }} ml<br>
+      Pozostało do rozlania: {{ spirit.reserved }} ml<br>
+      <img src=" {{ spirit.picture.url }}" width="100" height="100"><br><br>
+      <form action={% url "spirit_details" spirit.id %}>
+        <input type="submit" value="szczegóły "/></form>
+      <br>
+      <br>
+      <br>
+    </div>
   {% endfor %}
 
 {% endblock %}

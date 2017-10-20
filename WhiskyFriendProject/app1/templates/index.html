@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 
-{% block content%}
-  <h2> <a href="{% url "all_orders" %}">Aktualne zrzutki</a></h2>
-  <h2> <a href="{% url "all_spirits" %}">Dostępne butelki</a></h2>
-  <h2> <a href="{% url "wall" %}">Slainte!</a> </h2>
+{% block content %}
 
-{%endblock%}
+  <form action={% url "all_spirits" %}>
+    <button class = button1 type="submit">Dostępne butelki</button>
+  </form>
+  <form action={% url "wall" %}>
+    <button type="submit">Slainte !</button>
+  </form>
+
+  <form action={% url "info" %}>
+    <input type="submit" value="Informacje o stronie "/>
+  </form>
+
+{% endblock %}

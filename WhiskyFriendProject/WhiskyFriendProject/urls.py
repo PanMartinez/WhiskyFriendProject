@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 from app1 import views as core_views
 
 from app1.views import (StartView, AllSpiritsView, SpiritDetailsView, NewOrderView, AllOrdersView, SlainteetListView,
-                        NewSlainteetView, SlainteetDetailView, CreateCommentView)
+                        NewSlainteetView, SlainteetDetailView, CreateCommentView, InfoView)
 
 urlpatterns = [
                   # Linki do Logowania
@@ -33,6 +33,7 @@ urlpatterns = [
                   url(r'^signup/$', core_views.signup, name='signup'),
                   # Linki do akcji
                   url(r'^index', StartView.as_view(), name="home"),
+                  url (r'info', InfoView.as_view(), name= "info"),
                   url(r'^all_spirits/', AllSpiritsView.as_view(), name="all_spirits"),
                   url(r'spirit_details/(?P<spirit_id>(\d)+)', SpiritDetailsView.as_view(), name="spirit_details"),
                   url(r'^new_order/(?P<spirit_id>(\d)+)', NewOrderView.as_view(), name="new_order"),
