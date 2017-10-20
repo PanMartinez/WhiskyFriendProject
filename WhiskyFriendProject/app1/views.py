@@ -5,9 +5,9 @@ from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 from .models import Slainteet, Spirit, Order
-from .forms import SignUpForm, CreateSlainteetForm, OrderForm
+from .forms import SignUpForm, CreateSlainteetForm, OrderForm, CreateCommentForm
 
 
 def signup(request):
@@ -72,19 +72,39 @@ class AllOrdersView(View):
         return TemplateResponse(request, 'all_orders.html')
 
 
-class SlainteetList(LoginRequiredMixin, ListView):
+
+class NewSlainteetView(LoginRequiredMixin, CreateView):
+    form_class = CreateSlainteetForm
+    template_name = 'form.html'
+    success_url = reverse_lazy('wall')
+
+    def get_initial(self):
+        initials = super(NewSlainteetView, self).get_initial()
+        initials['user'] = self.request.user
+        return initials
+
+
+class SlainteetListView(LoginRequiredMixin, ListView):
     template_name = 'slainteet_wall.html'
 
     def get_queryset(self):
         return Slainteet.objects.all().order_by("-creation_date")
 
 
-class NewSlainteet(LoginRequiredMixin, CreateView):
-    form_class = CreateSlainteetForm
+class SlainteetDetailView(LoginRequiredMixin, DetailView):
+    model = Slainteet
+    template_name = 'slainteet_detail.html'
+
+
+
+class CreateCommentView(LoginRequiredMixin, CreateView):
+    form_class = CreateCommentForm
     template_name = 'form.html'
-    success_url = reverse_lazy('wall')
 
     def get_initial(self):
-        initials = super(NewSlainteet, self).get_initial()
-        initials['user'] = self.request.user
+        initials = super(CreateCommentView, self).get_initial()
+        initials['slainteet'] = self.kwargs['slainteet_id']
         return initials
+
+    def get_success_url(self):
+        return reverse('slainteet', kwargs={'pk': self.object.slainteet.id})

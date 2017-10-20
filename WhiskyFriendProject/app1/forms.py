@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from .models import Slainteet, Order
+from .models import Slainteet, Order, Comment
 
 
 class SignUpForm(UserCreationForm):
@@ -15,6 +15,15 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',)
 
 
+
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ('quantity',)
+
+
+
 class CreateSlainteetForm(forms.ModelForm):
     class Meta:
         model = Slainteet
@@ -24,7 +33,11 @@ class CreateSlainteetForm(forms.ModelForm):
         }
 
 
-class OrderForm(forms.ModelForm):
+
+class CreateCommentForm(forms.ModelForm):
     class Meta:
-        model = Order
-        fields = ('quantity',)
+        model = Comment
+        fields = '__all__'
+        widgets = {
+            'slainteet': forms.HiddenInput,
+}

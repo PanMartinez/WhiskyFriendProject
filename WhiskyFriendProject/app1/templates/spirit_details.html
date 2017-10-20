@@ -2,21 +2,28 @@
 
 {% block content %}
   <img src=" {{ spirit.picture.url }}" width="500" height="500">
+  <p class="sidebar">
   <h2>Nazwa: {{ spirit.name }}</h2>
   <li>Pojemność butelki: {{ spirit.get_capacity_display }}</li>
   <li>Kraj pochodzenia: {{ spirit.country }}</li>
   <li>Cena za butelkę: {{ spirit.price }}zł</li>
   <li>{{ spirit.description }}</li>
   <li>Pozostało do rozlania:{{ spirit.reserved }}ml</li>
+  </p>
+  <br>
   <br>
   <li>cena za 200ml:{{ spirit.price200 }}zł</li>
   <li>cena za 100ml: {{ spirit.price100 }}zł</li>
   <li>cena za 50ml: {{ spirit.price50 }}zł</li>
   <br>
-
-  <p><a href="{% url "new_order" spirit.id %}"> Dołącz</a></p>
-
-  <p><a href="{% url "all_spirits" %}">Inne zrzutki</a></p>
+  <p>
+  <form action={% url "new_order" spirit.id %}>
+    <input type="submit" value="Dołącz "/>
+  </form>
+  </p>
+  <form action={% url "all_spirits" %}>
+    <input type="submit" value="Inne zrzutki "/>
+  </form>
 
   <p> Aktualne zamówienia:</p>
   {% for order in orders %}

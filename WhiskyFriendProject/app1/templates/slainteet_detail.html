@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {{ slainteet.content }}<br>
+    <strong>{{ slainteet.user }} | {{ slainteet.creation_date }}</strong><br><br>
+    <strong>Komentarze:</strong><br>
+    {{ slainteet.comment_set.all|join:"<br>" }}
+    <form method="GET" action='/add_comment/{{ slainteet.id }}'><br><br>
+        <input type="submit" value="Dodaj komentarz">
+    </form>
+{% endblock %}

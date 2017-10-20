@@ -21,8 +21,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from app1 import views as core_views
 
-from app1.views import (StartView, AllSpiritsView, SpiritDetailsView, NewOrderView,
-                        AllOrdersView, SlainteetList, NewSlainteet)
+from app1.views import (StartView, AllSpiritsView, SpiritDetailsView, NewOrderView, AllOrdersView, SlainteetListView,
+                        NewSlainteetView, SlainteetDetailView, CreateCommentView)
 
 urlpatterns = [
                   # Linki do Logowania
@@ -38,7 +38,9 @@ urlpatterns = [
                   url(r'^new_order/(?P<spirit_id>(\d)+)', NewOrderView.as_view(), name="new_order"),
                   url(r'^all_orders', AllOrdersView.as_view(), name="all_orders"),
                   # Linki do community
-                  url(r'^slainteet/', SlainteetList.as_view(), name="wall"),
-                  url(r'^say_slainte/', NewSlainteet.as_view(), name="say_slainte"),
+                  url(r'^slainteet/', SlainteetListView.as_view(), name="wall"),
+                  url(r'^say_slainte/', NewSlainteetView.as_view(), name="say_slainte"),
+                  url(r'^add_comment/(?P<slainteet_id>(\d)+)', CreateCommentView.as_view(), name='comment'),
+                  url(r'^slainteet_detail/(?P<pk>(\d)+)', SlainteetDetailView.as_view(), name='slainteet')
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

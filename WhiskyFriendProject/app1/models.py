@@ -72,3 +72,10 @@ class Slainteet(models.Model):
 
     def __str__(self):
         return self.content
+
+class Comment(models.Model):
+    content = models.CharField(max_length=60)
+    slainteet = models.ForeignKey(Slainteet, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '> {}'.format(self.content)
